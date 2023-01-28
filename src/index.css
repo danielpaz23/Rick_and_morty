@@ -5,6 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url('https://img.freepik.com/vector-gratis/fondo-galaxia-acuarela-pintada-mano_52683-63441.jpg?w=1380&t=st=1674878537~exp=1674879137~hmac=fb87835d542426c0a8e8366461050a8ee2e8f33f210b4d5203208774d6976b99');
+  background-attachment: absolute;
+  
 }
 
 code {
