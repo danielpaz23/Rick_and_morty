@@ -1,0 +1,28 @@
+nav{
+    background-color: purple;
+    border-radius: 7px;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 30px;
+    margin-bottom: 20px;
+}
+
+nav img{
+    filter: hue-rotate(100deg);
+}
+.links{
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    color: darkviolet;
+    padding: 10px;
+    margin: 0px 15px;
+}
+
+.links:hover{
+    color: hotpink;
+    background-color: rgb(238, 130, 238, 0.2);
+    border-radius: 8px;
+    padding: 10px;
+}
