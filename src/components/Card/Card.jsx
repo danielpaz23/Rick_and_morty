@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { useState, useEffect } from "react";
+import { addFav, removeFav } from "../../redux/actions.js";
 
 const NameStyle = styled.h2`
   position: relative;
@@ -17,8 +20,7 @@ const NameStyle = styled.h2`
   color: transparent;
 `;
 const DivStyle = styled.div`
-  display: flex;
-  justify-content: space-evenly;
+  display: inline-block;
   margin-top: 10px;
   font-size: 20px;
   box-sizing: border-box;
@@ -64,10 +66,43 @@ const Img = styled.img`
   border-radius: 15px;
   background-size: cover;
 `;
-export default function Card(props) {
+export function Card(props) {
+  const [isFav, setIsFav] = useState(props.fav);
+
+  useEffect(() => {
+    props.myFavorites &&
+      props.myFavorites.forEach((fav) => {
+        if (fav.id === props.id) {
+          setIsFav(true);
+        }
+      });
+  }, [props.myFavorites]);
+
+  function handleFavorite() {
+    if (isFav) {
+      setIsFav(false);
+      props.removeFav(props.id);
+    } else {
+      setIsFav(true);
+      props.addFav({
+        name: props.name,
+        species: props.species,
+        gender: props.gender,
+        image: props.image,
+        id: props.id,
+      });
+    }
+  }
   return (
     <DivCards>
-      <Button onClick={props.onClose}>X</Button>
+      <div style={{display: 'flex', justifyContent: 'space-between'}}>
+      {isFav ? (
+        <Button onClick={handleFavorite}>❤️</Button>
+      ) : (
+        <Button onClick={handleFavorite}>🤍</Button>
+      )}
+      {props.onClose && <Button onClick={props.onClose}>X</Button>}
+      </div>
       <DivStyle>
         <h2>{props.species}</h2>
         <h2>{props.gender}</h2>
@@ -79,3 +114,21 @@ export default function Card(props) {
     </DivCards>
   );
 }
+export function mapStateToProps(state) {
+  return {
+    myFavorites: state.myFavorites,
+  };
+}
+
+export function mapDispatchToProps(dispatch) {
+  return {
+    addFav: function(personaje) {
+      dispatch(addFav(personaje));
+    },
+    removeFav: function(id) {
+      dispatch(removeFav(id));
+    },
+  };
+}
+
+export default connect(null, mapDispatchToProps)(Card);

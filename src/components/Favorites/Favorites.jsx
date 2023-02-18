@@ -1,5 +1,6 @@
 import Card from "../Card/Card.jsx";
 import styled from "styled-components";
+import { connect } from "react-redux";
 import React from "react";
 
 const DivCards = styled.div`
@@ -7,39 +8,36 @@ const DivCards = styled.div`
   flex-wrap: wrap;
   justify-content: space-evenly;
 `;
-export default function Cards(props) {
-  const { characters } = props;
-  let i = 0;
+
+export function Favorites({myFavorites}) {
   return (
     <DivCards>
-      {characters.length === 0 ? (
+      {myFavorites.length === 0 ? (
         <p style={{ color: "violet", marginTop: "150px", fontSize: "24px" }}>
-          ¡Busca un Personaje!
+          ¡Agrega un favorito!
         </p>
       ) : (
-        characters.map((e) => (
+        myFavorites.map((e, i) => (
           <Card
             id={e.id}
             name={e.name}
             species={e.species}
             gender={e.gender}
             image={e.image}
-            onClose={() => props.onClose(e.id)}
+            onClose={false}
+            fav={true}
             key={i++}
           />
         ))
       )}
-      {/* {characters.map((e) => (
-        <Card
-          id={e.id}
-          name={e.name}
-          species={e.species}
-          gender={e.gender}
-          image={e.image}
-          onClose={() => props.onClose(e.id)}
-          key={i++}
-        />
-      ))} */}
     </DivCards>
   );
 }
+
+export function mapStateToProps(state) {
+    return {
+      myFavorites: state.myFavorites,
+    };
+}
+
+export default connect(mapStateToProps, null)(Favorites);

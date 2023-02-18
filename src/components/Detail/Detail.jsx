@@ -51,13 +51,12 @@ export default function Detail() {
             image:char.image,
         });
         } else {
-          window.alert("No hay personajes con ese ID");
+          alert("No hay personajes con ese ID");
         }
       })
       .catch((err) => {
-        window.alert("No hay personajes con ese ID");
+        alert("No hay personajes con ese ID");
       });
-    return setCharacter({});
   }, [detailId]);
   return (
     <div>
@@ -81,7 +80,7 @@ export default function Detail() {
           </p>)}
           {character.origin && (<p>
             <b style={textos}>Origin:</b>
-            {character.origin.name}
+            {character.origin}
           </p>)}
         </div>
         <img style={image} src={character.image} />
