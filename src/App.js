@@ -14,7 +14,7 @@ function App() {
   const [access, setAccess] = useState(false);
   const navigate = useNavigate();
   const username = "ejemplo@gmail.com";
-  const password = "1password";
+  const password = "1234";
   
   function login(userData) {
     if (userData.password === password && userData.username === username) {
@@ -29,9 +29,7 @@ function App() {
   useEffect(() => {
     !access && navigate("/");
   }, [access]);
-  function onClose(id) {
-    setCharacters(characters.filter((element) => element.id !== id));
-  }
+
   function onSearch(character) {
     fetch(`https://rickandmortyapi.com/api/character/${character}`)
       .then((response) => response.json())
@@ -48,12 +46,13 @@ function App() {
   function random() {
     let randomId = Math.floor(Math.random() * 826);
     onSearch(randomId);
-  }
+  } 
   function onClose(id) {
     setCharacters(characters.filter((element) => element.id !== id));
   }
 
   const location = useLocation();
+
   return (
     <div className="App" style={{ padding: "25px" }}>
          {location.pathname !== "/" && (

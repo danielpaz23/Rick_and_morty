@@ -17,4 +17,18 @@ export function removeFav(id){
         payload: id
     }
 }
-// export function filterCard
+
+export function filterCards(status) {
+    return {
+      type: FILTER,
+      payload: status,
+    };
+  }
+  
+  export function orderCards(id) {
+    return {
+      type: ORDER,
+      payload: id,
+    };
+  }
+  

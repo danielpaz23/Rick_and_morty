@@ -14,14 +14,15 @@ const divPrincipal = {
   marginTop: "75px",
 };
 const styleButton = {
-  backgroundColor: "pink",
-  color: "purple",
-  border: "0px",
-  borderRadius: "5px",
-  fontWeidght: "bold",
-  fontSize: "15px",
-  padding: "10px",
-  marginTop: "35px",
+  fontSize: "20px",
+  width: "110px",
+  height: "70px",
+  margin:" 100px",
+  padding:" 5px 20px",
+  border:" 3px solid palevioletred",
+  borderradius: "10px",
+  backgroundcolor: "pink",
+  color: "rgb(240, 123, 240)",
   cursor: "pointer",
 };
 export default function Detail() {
@@ -85,7 +86,7 @@ export default function Detail() {
         </div>
         <img style={image} src={character.image} />
       </div>
-      <button style={styleButton} onClick={()=> navigate('/home')}>Bakc to Home</button>
+      <button style={styleButton} onClick={()=> navigate('/home')}>Back to Home</button>
     </div>
   );
 }
